@@ -53,7 +53,13 @@ client.on(Events.MessageCreate, async message => {
 });
 client.login(DISCORD_TOKEN);
 
+const requestListener = function (req, res) { 
+    res.writeHead(200); 
+    res.end("Hello from Server!"); 
+}; 
 
-http.createServer().listen(8080, () => {
+const server = http.createServer(requestListener); 
+
+server.listen(8080, () => {
   console.log('Listening on port 8080');
 });
