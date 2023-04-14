@@ -4,7 +4,7 @@ const http = require('http');
 const { Client, Events, GatewayIntentBits, AttachmentBuilder } = require('discord.js');
 const { HfInference } = require('@huggingface/inference');
 const { Buffer } = require("node:buffer");
-const hf = new HfInference(HUGGINGFACE_TOKEN)
+const hf = new HfInference(HUGGINGFACE_TOKEN);
 
 const client = new Client({
   intents:
@@ -18,6 +18,7 @@ client.once(Events.ClientReady, c => {
 });
 
 client.on(Events.MessageCreate, async message => {
+  let prompt;
   if (message.content.startsWith("!i")) {
     prompt = message.content.substring(2);
     const img = await hf.textToImage({
