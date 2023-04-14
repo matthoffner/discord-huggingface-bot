@@ -2,6 +2,7 @@
 
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 const HUGGINGFACE_TOKEN = process.env.HUGGINGFACE_TOKEN;
+const http = require('http');
 const { Client, Events, GatewayIntentBits, AttachmentBuilder } = require('discord.js');
 const { HfInference } = require('@huggingface/inference');
 const { Buffer } = require("node:buffer");
@@ -53,3 +54,6 @@ client.on(Events.MessageCreate, async message => {
 client.login(DISCORD_TOKEN);
 
 
+http.createServer().listen(8080, () => {
+  console.log('Listening on port 8080');
+});
